@@ -1,0 +1,38 @@
+<div style="background-image: url('assets/layout/images/{{(layoutService.config().colorScheme === 'light' ? 'login_background-dark.png' : 'login_background-dark.png')}}');" class="_background surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <!--<img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-institute-dark' : 'logo-institute-lwhite'}}.svg" alt="Sakai logo" class="mb-3 w-12rem flex-shrink-0 md:w-8rem">-->
+        <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-5 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <img ngSrc="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'unipamplona_64.png' : 'logo-institute-white.svg'}}" alt="Logo" height=100 width="90">
+                    <div class="text-900 text-3xl font-medium mb-3">Bienvenido</div>
+                    <span class="text-600 font-medium">Inicia sesión para continuar</span>
+                </div>
+                <form class="p-0" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+                    <label for="username" class="block text-900 text-lg font-medium mb-2">Usuario</label>
+                    <input id="username" type="text" placeholder="Usuario" pInputText class="mb-2 w-full p-inputtext-sm" style="padding:1rem" formControlName="username">
+                    @if (usernameValid && controls('username')) {
+                        <div>
+                            <small class="p-error">Ingresa un usuario</small>
+                        </div>
+                    }
+                    <label for="password" class="block text-900 font-medium text-lg mb-2 mt-3">Contraseña</label>
+                    <p-password id="password" [feedback]="false" placeholder="Contraseña" [toggleMask]="true" styleClass="mb-2 w-full p-inputtext-sm" inputStyleClass="w-full p-3 md:w-30rem" formControlName="password"></p-password>
+                    @if (passwordValid && controls('password')) {
+                        <div>
+                            <small class="p-error">Ingresa una contraseña</small>
+                        </div>
+                    }
+                    <div class="flex align-items-center justify-content-between mt-3 mb-5 gap-5">
+                        <div class="flex align-items-center">
+                            <p-checkbox id="rememberme" [binary]="true" styleClass="mr-2" formControlName="rememberCheck"></p-checkbox>
+                            <label for="rememberme">Recordarme</label>
+                        </div>
+                        <a (click)="recoverPasswor()" class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">¿Olvidó contraseña?</a>
+                    </div>
+                    <button pButton pRipple type="submit" label="Ingresar" class="w-full p-3 text-xl" [icon]="loader ? 'pi pi-spin pi-spinner m-0' : ''"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

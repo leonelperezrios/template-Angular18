@@ -1,0 +1,5 @@
+@if (menuService.functionality$ | async) {
+    <div class="card">
+        <app-functionality [functionality]="menuService.functionality$ | async"></app-functionality>
+    </div>
+}
